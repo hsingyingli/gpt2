@@ -8,7 +8,6 @@ class DataGenerator():
         self.tokenizer  = AutoTokenizer.from_pretrained('bert-base-chinese') # 21128
         self.embedding  = AutoModel.from_pretrained('bert-base-chinese')
         self.vocab_size = 21128
-
         self.path       = path
         self.length     = max_length
     def get_data(self):
@@ -58,7 +57,7 @@ class DataGenerator():
 
         train_feature, train_label = np.array(train_feature), np.array(train_label)
         test_feature, test_label = np.array(test_feature), np.array(test_label)
-
+        print(train_feature.shape)
         
         return train_feature, train_label, test_feature, test_label
 
@@ -66,8 +65,8 @@ class DataGenerator():
         return np.array(self.tokenizer.convert_ids_to_tokens(ids))
 
 if __name__ == "__main__":
-    data = DataGenerator('./../Data/',51)
-    text = data.get_data(mode = 'train')
+    data = DataGenerator('./../data/',51)
+    text = data.get_data()
     
 
     
